@@ -20,6 +20,6 @@ def strxor(a, b):     # xor two strings of different lengths
     else:
         return "".join([chr(ord(x) ^ ord(y)) for (x, y) in zip(a, b[:len(a)])])
 
-
-for ct in cts:
-    print(ct)
+def main():
+    for ct in cts:
+        print(ct)
