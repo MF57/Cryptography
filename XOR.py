@@ -15,11 +15,26 @@ cts = [0x315c4eeaa8b5f8aaf9174145bf43e1784b8fa00dc71d885a804e5ee9fa40b16349c146f
 
 tct = 0x32510ba9babebbbefd001547a810e67149caee11d945cd7fc81a05e9f85aac650e9052ba6a8cd8257bf14d13e6f0a803b54fde9e77472dbff89d71b57bddef121336cb85ccb8f3315f4b52e301d16e9f52f904
 
-
+letters = ("41", "42", "43", "44", "45", "46", "47", "48", "49", "4a", "4b", "4c", "4d", "4e", "4f", "51", "52", "53", "54", "55", "56", "57", "58", "59", "5a", "61", "62", "63", "64", "65", "66", "67", "68", "69", "6a", "6b", "6c", "6d", "6e", "6f", "70", "50", "71", "72", "73", "74", "75", "76", "77", "78", "79", "7a")
 
 #Xoring a-zA-Z with space gives output A-Za-z
+
+def ascii(a):
+    length = len(a)
+    length = (length/2).__int__()
+    output = ""
+    for i in range (0, length):
+        tmp = a[i]+a[i+1]
+        if tmp in letters:
+            output = output +str(base64.b16decode(tmp.upper()))[2:-1]
+        else:
+            output = output +"?"
+    return output[1:]
 
 
 for i in range(0,9):
     for j in range(0,9):
-        print(i,"XOR",j," = ",hex(cts[i]^cts[j]))
+        print(i,"XOR",j," = ",ascii(hex(cts[i]^cts[j]).__str__()))
+
+a = 0x412041
+
